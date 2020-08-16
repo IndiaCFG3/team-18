@@ -1,0 +1,12 @@
+
+.city{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.projects{
+  padding: 10px;
+  margin-top: 20px;
+}
+.left-card,.right-card{
+  margin : auto;
+}
