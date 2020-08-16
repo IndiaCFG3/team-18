@@ -17,7 +17,7 @@ const form1Schema = new mongoose.Schema({
     type: Integer,
     required: true,
   },
-  location:{
+  project:{
     type: String,
     required: true,
     minlength: 2,
