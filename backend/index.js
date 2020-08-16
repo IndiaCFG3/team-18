@@ -101,6 +101,11 @@ app.post("/login", function (req, res) {
   });
 });
 
+app.get("/logout", function(req, res){
+	req.logout();
+	res.redirect("/");
+});
+
 // app.post("/login", passport.authenticate("local",
 // 		{
 // 			successRedirect: "/dashboard",
@@ -143,15 +148,15 @@ app.post("/register", function (req, res) {
 // });
 
 app.get("/dashboard", isLoggedIn, function(req, res){
-  res.render('dashboard');
+  res.render('dashboard', {user : req.user});
 })
 
 app.get('/dashboard/form1-display', isLoggedIn, function(req, res){
-  res.render('form1-display');
+  res.render('form1-display', {user : req.user});
 })
 
 app.get('/dashboard/form2-display', isLoggedIn, function(req, res){
-  res.render('form2-display');
+  res.render('form2-display', {user : req.user});
 })
 
 const port = process.env.PORT || config.get("port");

@@ -33,12 +33,14 @@
         </div>
         </div>
         <br>
-        <div class="card row">
-            <div class="card-body">
-                <h5 class="card-title">Create new form</h5>
-                <a class="btn btn-outline-primary"href="#">New Form</a>
+        <% if(user.isAdmin) { %>
+            <div class="card row">
+                <div class="card-body">
+                    <h5 class="card-title">Create new form</h5>
+                    <a class="btn btn-outline-primary"href="#">New Form</a>
+                </div>
             </div>
-        </div>
+        <% } %>
     </div>
     <!--Footer-->
 <%- include('partials/footer') -%>

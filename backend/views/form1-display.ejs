@@ -81,11 +81,13 @@
                 </div>
             </div>
             <br>
+            <% if(user.isAdmin || user.isUser) { %>
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Want to add an other entry</h3>
                     <a href="/form1" class="btn btn-outline-success">Add Entry</a>
                 </div>
             </div>
+            <% } %>
         </div>
 <%- include('partials/footer') -%>
