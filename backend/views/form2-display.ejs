@@ -8,7 +8,7 @@
         <title>CARPE Project</title>
     </head>
     <body style="background:#dedede;">
-          <%-include("header")-%>
+          <%- include('partials/header') %>
         <div class="container">
             <div class="card">
                 <div class="card-body">
@@ -21,7 +21,7 @@
                    <br>
                    <div style="display:inline">
                         <label for="periodicity">Periodicity : </label>
-                        <select class="custom-select" id="periodicity">
+                        <select class="custom-select" Name="periodicity">
                             <option value="daily">daily</option>
                             <option value="weekly">weekly</option>
                             <option value="monthly">monthly</option>
@@ -32,12 +32,12 @@
                         <br>
                         <div>
                             Start Date :
-                            <input type="date" id="startDate" placeholder="dd/mm/yy" required>
+                            <input type="date" name="startDate" placeholder="dd/mm/yy" required>
                         </div>
                         <br>
                         <div>
                             End Date :
-                            <input type="date" id="endDate" placeholder="dd/mm/yy" required>
+                            <input type="date" name="endDate" placeholder="dd/mm/yy" required>
                         </div>
 
                     </div>
@@ -49,8 +49,8 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Want to add an other entry</h3>
-                    <button class="btn btn-outline-success">Add Entry</button>
+                    <a href="/form2" class="btn btn-outline-success">Add Entry</a>
                 </div>
             </div>
         </div>
-  <%- include("footer") -%>
+<%- include('partials/footer') -%>
