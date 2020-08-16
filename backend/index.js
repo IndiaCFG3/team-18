@@ -121,7 +121,7 @@ app.post("/register", function (req, res) {
       } else {
         console.log(user);
         passport.authenticate("local")(req, res, function () {
-          res.redirect("/login");
+          res.redirect("/dashboard");
         });
       }
     }
