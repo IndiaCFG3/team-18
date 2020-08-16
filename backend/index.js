@@ -147,4 +147,12 @@ const server = app.listen(port, () =>
   console.log(`Listening on port ${port}...`)
 );
 
+Form1.find({}, function(err, forms){
+  if (err)
+    console.log(err);
+  else
+    console.log(forms);
+})
+
+
 module.exports = server;
