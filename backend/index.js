@@ -142,17 +142,36 @@ app.post("/register", function (req, res) {
 //   });
 // });
 
+app.get("/dashboard", isLoggedIn, function(req, res){
+  res.render('dashboard');
+})
+
+app.get('/dashboard/form1-display', isLoggedIn, function(req, res){
+  res.render('form1-display');
+})
+
+app.get('/dashboard/form2-display', isLoggedIn, function(req, res){
+  res.render('form2-display');
+})
+
 const port = process.env.PORT || config.get("port");
 const server = app.listen(port, () =>
   console.log(`Listening on port ${port}...`)
 );
 
-Form1.find({}, function(err, forms){
-  if (err)
-    console.log(err);
-  else
-    console.log(forms);
-})
+// Form1.find({}, function(err, forms){
+//   if (err)
+//     console.log(err);
+//   else
+//     console.log(forms);
+// })
 
+function isLoggedIn(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	//req.flash("error", "You need to be logged in to do that !")
+	res.redirect("/login");
+}
 
 module.exports = server;
