@@ -11,6 +11,13 @@ const bodyParser = require("body-parser");
 const app = express();
 //require("./startup/routes")(app);
 
+app.set("view engine", "ejs");
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+
 //views folder
 app.use(express.static("public"));
 app.use(methodOverride("_method")); // to deal with put requests ( while updating forms )
@@ -20,12 +27,12 @@ var Form1 = require("./models/form1");
 var Form2 = require("./models/form2");
 var User = require("./models/user");
 
-app.set("view engine", "ejs");
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+var form1Routes = require("./routes/form1")
+var form2Routes = require("./routes/form2")
+
+app.use(form1Routes);
+app.use(form2Routes);
+
 
 mongoose.connect(
   "mongodb+srv://admin:admin@cluster0.77obl.mongodb.net/Carpe?retryWrites=true&w=majority",
@@ -34,6 +41,13 @@ mongoose.connect(
     useUnifiedTopology: true,
   }
 );
+
+app.use(require("express-session")({
+	secret: "Gonna get restored !!",
+	resave: false,
+	saveUninitialized : false
+}));
+	
 // User.create({
 //   name : "Sample" ,
 //   email :  "Sample@gmail.com" ,
@@ -70,21 +84,28 @@ app.get("/login", function (req, res) {
   res.render("login");
 });
 
-app.post("/login", function (req, res) {
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password,
-  });
+// app.post("/login", function (req, res) {
+//   const user = new User({
+//     username: req.body.username,
+//     password: req.body.password,
+//   });
 
-  req.login(user, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      passport.authenticate("local")(req, res, function () {
-        res.redirect("/secrets");
-      });
-    }
-  });
+//   req.login(user, function (err) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       passport.authenticate("local")(req, res, function () {
+//         res.redirect("/secrets");
+//       });
+//     }
+//   });
+// });
+
+app.post("/login", passport.authenticate("local", 
+		{
+			successRedirect: "/secrets",
+			failureRedirect: "/login"
+		}), function(req, res){
 });
 
 app.get("/register", function (req, res) {
@@ -92,19 +113,13 @@ app.get("/register", function (req, res) {
 });
 
 app.post("/register", function (req, res) {
-  User.register(
-    {
-      email: req.body.username,
-      name: req.body.name,
-      isAdmin: false,
-      isUser: false,
-    },
-    req.body.password,
-    function (err, user) {
+  console.log(req.body.username, req.body.email, req.body.password, req.body, typeof(req.body.username));
+  User.register({username: req.body.username, email: req.body.email, isAdmin: false, isUser: false}, req.body.password, function (err, user) {
       if (err) {
         console.log(err);
-        res.redirect("/register");
+        res.redirect("/");
       } else {
+        console.log(user);
         passport.authenticate("local")(req, res, function () {
           res.redirect("/secrets");
         });
@@ -112,6 +127,20 @@ app.post("/register", function (req, res) {
     }
   );
 });
+
+// router.post("/register", function(req, res){
+//   var newUser = new User({username: req.body.name});
+//   User.register(newUser, req.body.password, function(err, user){
+//     if(err){
+//         req.flash("error", err.message);
+//       return res.redirect("/register");
+//     }
+//     passport.authenticate("local")(req, res ,function(){
+//       req.flash("sucess", "Welcome to YelpCamp " + user.username);
+//       res.redirect("/campgrounds");
+//     });
+//   });
+// });
 
 const port = process.env.PORT || config.get("port");
 const server = app.listen(port, () =>

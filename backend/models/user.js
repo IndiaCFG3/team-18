@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 var passportLocalMongoose  = require("passport-local-mongoose");
 
 const userSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: true,
     minlength: 2,
@@ -16,12 +16,13 @@ const userSchema = new mongoose.Schema({
     maxlength: 255,
     unique: true,
   },
-  password: {
-    type: String,
-    required: true,
-    minlength: 5,
-    maxlength: 10,
-  },
+  // password: {
+  //   type: String,
+  //   required: true,
+  //   minlength: 5,
+  //   maxlength: 10,
+  // },
+  password : String,
   isAdmin: Boolean,
   isUser: Boolean,
 });
