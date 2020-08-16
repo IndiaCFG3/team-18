@@ -1,3 +1,6 @@
+var mongoose = require("mongoose");
+var passportLocalMongoose  = require("passport-local-mongoose");
+
 const form1Schema = new mongoose.Schema({
   surveyor_name: {
     type: String,
@@ -30,3 +33,5 @@ const form1Schema = new mongoose.Schema({
     maxlength: 100,
   },
 });
+
+module.exports = mongoose.model("Form1", form1Schema);

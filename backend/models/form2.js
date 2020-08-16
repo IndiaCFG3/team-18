@@ -1,4 +1,7 @@
-const form1Schema = new mongoose.Schema({
+var mongoose = require("mongoose");
+var passportLocalMongoose  = require("passport-local-mongoose");
+
+const form2Schema = new mongoose.Schema({
   surveyor_name: {
     type: String,
     required: true,
@@ -36,3 +39,5 @@ const form1Schema = new mongoose.Schema({
     maxlength: 100,
   },
 });
+
+module.exports = mongoose.model("Form2", form2Schema);
