@@ -15,11 +15,17 @@ const form1Schema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  waste_in:{
+  vehicle_number:{
+    type: String,
+    required: true,
+    minlength:10,
+    maxlength:10,
+  },
+  trips:{
     type: Integer,
     required: true,
   },
-  waste_out:{
+  bags:{
     type: Integer,
     required: true,
   },
