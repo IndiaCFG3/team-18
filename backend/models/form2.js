@@ -25,11 +25,11 @@ const form2Schema = new mongoose.Schema({
     maxlength:10,
   },
   trips:{
-    type: Integer,
+    type: Number,
     required: true,
   },
   bags:{
-    type: Integer,
+    type: Number,
     required: true,
   },
   comments:{

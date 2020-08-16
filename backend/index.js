@@ -8,6 +8,9 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 
+const app = express();
+//require("./startup/routes")(app);
+
 //views folder 
 app.use(express.static("public"));
 app.use(methodOverride("_method")); // to deal with put requests ( while updating forms )
@@ -17,8 +20,7 @@ var Form1 = require("./models/form1")
 var Form2 = require("./models/form2");
 var User = require("./models/user");
 
-const app = express();
-require("./startup/routes")(app);
+
 
 app.set("view engine", "ejs");
 app.use(
@@ -46,7 +48,8 @@ passport.deserializeUser(function(id, done){
 
 //routes
 app.get("/login", function (req, res) {
-  res.render("login");
+  res.send("hi")
+  //res.render("login");
 });
 
 app.post("/login", function (req, res) {

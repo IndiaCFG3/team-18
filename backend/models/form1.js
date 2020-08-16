@@ -19,11 +19,11 @@ const form1Schema = new mongoose.Schema({
     required: true,
   },
   waste_in:{
-    type: Integer,
+    type: Number,
     required: true,
   },
   waste_out:{
-    type: Integer,
+    type: Number,
     required: true,
   },
   comments:{
