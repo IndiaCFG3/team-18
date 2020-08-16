@@ -11,11 +11,11 @@ const bodyParser = require("body-parser");
 const app = express();
 //require("./startup/routes")(app);
 
-//views folder 
+//views folder
 app.use(express.static("public"));
 app.use(methodOverride("_method")); // to deal with put requests ( while updating forms )
 
-// models to use it further 
+// models to use it further
 var Form1 = require("./models/form1")
 var Form2 = require("./models/form2");
 var User = require("./models/user");
@@ -47,6 +47,10 @@ passport.deserializeUser(function(id, done){
 });
 
 //routes
+app.get("/", function (req, res) {
+  res.render("home");
+});
+
 app.get("/login", function (req, res) {
   res.send("hi")
   //res.render("login");
