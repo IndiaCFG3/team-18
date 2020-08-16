@@ -1,4 +1,6 @@
 // We will define our user collection here.
+var mongoose = require("mongoose");
+var passportLocalMongoose  = require("passport-local-mongoose");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -23,3 +25,7 @@ const userSchema = new mongoose.Schema({
   isAdmin: Boolean,
   isUser: Boolean,
 });
+
+userSchema.plugin(passportLocalMongoose);
+
+module.exports = mongoose.model("User", userSchema);
