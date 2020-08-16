@@ -4,3 +4,7 @@ Team*.zip
 *.crt
 *.key
 *.ovpn
+
+
+/.node_modules
+/node_modules
