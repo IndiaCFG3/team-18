@@ -16,16 +16,16 @@
                 <h1 style="text-align:center;text-decoration-line: underline;">Sign Up</h1>
                 <form action="/register" method="POST">
                     <div class="form-group">
-                      <label for="username">Username</label>
-                      <input type="email" class="form-control" id="username" placeholder="Username" required>
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Username" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="abc@xyz.com" required>
+                        <label for="username">Email address</label>
+                        <input type="email" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="abc@xyz.com" required>
                     </div>
                     <div class="form-group">
                       <label for="password">Password</label>
-                      <input type="password" class="form-control" id="password" placeholder="Password" required>
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

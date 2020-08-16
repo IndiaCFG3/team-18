@@ -33,11 +33,11 @@ mongoose.connect("mongodb+srv://admin:admin@cluster0.77obl.mongodb.net/Carpe?ret
   useUnifiedTopology: true,
 });
 // User.create({
-//   name : "Sample" , 
+//   name : "Sample" ,
 //   email :  "Sample@gmail.com" ,
 //   password : "test18" ,
 //   isAdmin : true ,
-//   isUser : false 
+//   isUser : false
 // } , function(err){
 //   if(err){
 //     console.log(err);
