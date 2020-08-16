@@ -52,8 +52,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/login", function (req, res) {
-  res.send("hi")
-  //res.render("login");
+  res.render("login");
 });
 
 app.post("/login", function (req, res) {
