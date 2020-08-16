@@ -4,11 +4,45 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="css/style.css">
         <title>CARPE Project</title>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+              google.charts.load('current', {'packages':['corechart']});
+              google.charts.setOnLoadCallback(drawVisualization);
+
+              function drawVisualization() {
+                // Some raw data (not necessarily accurate)
+                var data = google.visualization.arrayToDataTable([
+                  ['Month', 'Waste In', 'Waste Out'],
+                  ['2020/01',  165,      938],
+                  ['2020/02',  135,      112],
+                  ['2020/03',  157,      116],
+                  ['2020/04',  139,      1110],
+                  ['2020/05',  136,      691],
+                  ['2020/06',  165,      938],
+                  ['2020/07',  135,      112],
+                  ['2020/08',  157,      116],
+                  ['2020/09',  139,      1110],
+                  ['2020/10',  136,      691],
+                  ['2020/11',  139,      1110],
+                  ['2020/12',  136,      691]
+                ]);
+
+                var options = {
+                  title : 'Form 1 Data',
+                  vAxis: {title: 'Waste In and Out'},
+                  hAxis: {title: 'Month'},
+                  seriesType: 'bars',
+                  series: {2: {type: 'line'}}        };
+
+                var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+              }
+            </script>
     </head>
     <body style="background:#dedede;">
-          <%-include("header")-%>
+          <%- include('partials/header') %>
         <div class="container">
             <div class="card">
                 <div class="card-body">
@@ -43,14 +77,15 @@
                     </div>
                     <br><br>
                     <h5>Pictorial Representation comes here</h5>
+                    <div id="chart_div" style="width: 1500px; height: 500px;"></div>
                 </div>
             </div>
             <br>
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Want to add an other entry</h3>
-                    <a href="#" class="btn btn-outline-success">Add Entry</a>
+                    <a href="/form1" class="btn btn-outline-success">Add Entry</a>
                 </div>
             </div>
         </div>
-  <%- include("footer") -%>
+<%- include('partials/footer') -%>

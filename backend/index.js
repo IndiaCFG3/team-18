@@ -47,7 +47,7 @@ app.use(require("express-session")({
 	resave: false,
 	saveUninitialized : false
 }));
-	
+
 // User.create({
 //   name : "Sample" ,
 //   email :  "Sample@gmail.com" ,
@@ -84,29 +84,29 @@ app.get("/login", function (req, res) {
   res.render("login");
 });
 
-// app.post("/login", function (req, res) {
-//   const user = new User({
-//     username: req.body.username,
-//     password: req.body.password,
-//   });
+app.post("/login", function (req, res) {
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password,
+  });
 
-//   req.login(user, function (err) {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       passport.authenticate("local")(req, res, function () {
-//         res.redirect("/secrets");
-//       });
-//     }
-//   });
-// });
-
-app.post("/login", passport.authenticate("local", 
-		{
-			successRedirect: "/secrets",
-			failureRedirect: "/login"
-		}), function(req, res){
+  req.login(user, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      passport.authenticate("local")(req, res, function () {
+        res.redirect("/dashboard");
+      });
+    }
+  });
 });
+
+// app.post("/login", passport.authenticate("local",
+// 		{
+// 			successRedirect: "/dashboard",
+// 			failureRedirect: "/login"
+// 		}), function(req, res){
+// });
 
 app.get("/register", function (req, res) {
   res.render("register");
@@ -121,7 +121,7 @@ app.post("/register", function (req, res) {
       } else {
         console.log(user);
         passport.authenticate("local")(req, res, function () {
-          res.redirect("/secrets");
+          res.redirect("/dashboard");
         });
       }
     }
@@ -142,9 +142,36 @@ app.post("/register", function (req, res) {
 //   });
 // });
 
+app.get("/dashboard", isLoggedIn, function(req, res){
+  res.render('dashboard');
+})
+
+app.get('/dashboard/form1-display', isLoggedIn, function(req, res){
+  res.render('form1-display');
+})
+
+app.get('/dashboard/form2-display', isLoggedIn, function(req, res){
+  res.render('form2-display');
+})
+
 const port = process.env.PORT || config.get("port");
 const server = app.listen(port, () =>
   console.log(`Listening on port ${port}...`)
 );
+
+// Form1.find({}, function(err, forms){
+//   if (err)
+//     console.log(err);
+//   else
+//     console.log(forms);
+// })
+
+function isLoggedIn(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	//req.flash("error", "You need to be logged in to do that !")
+	res.redirect("/login");
+}
 
 module.exports = server;
