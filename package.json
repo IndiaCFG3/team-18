@@ -1,0 +1,19 @@
+{
+  "name": "team-18",
+  "version": "1.0.0",
+  "description": "Super excited and thrilled for this all new virtual experience !!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IndiaCFG3/team-18.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IndiaCFG3/team-18/issues"
+  },
+  "homepage": "https://github.com/IndiaCFG3/team-18#readme"
+}
