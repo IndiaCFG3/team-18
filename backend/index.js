@@ -28,10 +28,23 @@ app.use(
     extended: true,
   }));
 
-mongoose.connect("mongodb://localhost:27017/userDB", {
+mongoose.connect("mongodb+srv://admin:admin@cluster0.77obl.mongodb.net/Carpe?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+User.create({
+  name : "Sample" , 
+  email :  "Sample@gmail.com" ,
+  password : "test18" ,
+  isAdmin : true ,
+  isUser : false 
+} , function(err){
+  if(err){
+    console.log(err);
+  }else{
+    console.log("User Created");
+  }
+})
 mongoose.set("useCreateIndex", true);
 
 app.use(passport.initialize());
