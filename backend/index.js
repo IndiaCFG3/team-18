@@ -11,6 +11,11 @@ const bodyParser = require("body-parser");
 const app = express();
 //require("./startup/routes")(app);
 
+// app.use(function(req, res, next){
+// 	res.locals.currentUser = req.user;
+// 	next();
+// });
+
 app.set("view engine", "ejs");
 app.use(
   bodyParser.urlencoded({
@@ -47,6 +52,7 @@ app.use(require("express-session")({
 	resave: false,
 	saveUninitialized : false
 }));
+
 
 // User.create({
 //   name : "Sample" ,
@@ -101,6 +107,17 @@ app.post("/login", function (req, res) {
   });
 });
 
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	next();
+});
+
+
+app.get("/logout", function(req, res){
+	req.logout();
+	res.redirect("/");
+});
+
 // app.post("/login", passport.authenticate("local",
 // 		{
 // 			successRedirect: "/dashboard",
@@ -143,15 +160,16 @@ app.post("/register", function (req, res) {
 // });
 
 app.get("/dashboard", isLoggedIn, function(req, res){
-  res.render('dashboard');
+  res.render('dashboard', );
+  //console.log(req.user);
 })
 
 app.get('/dashboard/form1-display', isLoggedIn, function(req, res){
-  res.render('form1-display');
+  res.render('form1-display', {user : req.user});
 })
 
 app.get('/dashboard/form2-display', isLoggedIn, function(req, res){
-  res.render('form2-display');
+  res.render('form2-display', {user: req.user});
 })
 
 const port = process.env.PORT || config.get("port");
@@ -165,6 +183,8 @@ const server = app.listen(port, () =>
 //   else
 //     console.log(forms);
 // })
+
+
 
 function isLoggedIn(req, res, next){
 	if(req.isAuthenticated()){
