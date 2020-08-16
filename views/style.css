@@ -1,0 +1,13 @@
+body{
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.city{
+  padding : 30px;
+}
+.projects{
+  padding: 30px;
+}
+.project,.left-card,.right-card{
+  margin: 30px;
+}

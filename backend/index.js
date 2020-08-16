@@ -11,11 +11,11 @@ const bodyParser = require("body-parser");
 const app = express();
 //require("./startup/routes")(app);
 
-//views folder 
+//views folder
 app.use(express.static("public"));
 app.use(methodOverride("_method")); // to deal with put requests ( while updating forms )
 
-// models to use it further 
+// models to use it further
 var Form1 = require("./models/form1")
 var Form2 = require("./models/form2");
 var User = require("./models/user");
@@ -28,10 +28,23 @@ app.use(
     extended: true,
   }));
 
-mongoose.connect("mongodb://localhost:27017/userDB", {
+mongoose.connect("mongodb+srv://admin:admin@cluster0.77obl.mongodb.net/Carpe?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+// User.create({
+//   name : "Sample" ,
+//   email :  "Sample@gmail.com" ,
+//   password : "test18" ,
+//   isAdmin : true ,
+//   isUser : false
+// } , function(err){
+//   if(err){
+//     console.log(err);
+//   }else{
+//     console.log("User Created");
+//   }
+// })
 mongoose.set("useCreateIndex", true);
 
 app.use(passport.initialize());
@@ -47,9 +60,12 @@ passport.deserializeUser(function(id, done){
 });
 
 //routes
+app.get("/", function (req, res) {
+  res.render("home");
+});
+
 app.get("/login", function (req, res) {
-  res.send("hi")
-  //res.render("login");
+  res.render("login");
 });
 
 app.post("/login", function (req, res) {
