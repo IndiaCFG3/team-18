@@ -12,9 +12,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
   }));
-  
+
   app.use(passport.initialize());
   app.use(passport.session());
-  mongoose.connect("mongodb://localhost/dbnamegoeshere" , {useNewUrlParser : true ,useUnifiedTopology: true});
+  mongoose.connect("mongodb://localhost/users" , {useNewUrlParser : true ,useUnifiedTopology: true});
   mongoose.set('useCreateIndex' , true);
-  
