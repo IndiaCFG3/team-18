@@ -6,6 +6,40 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="login.css">
         <title>CARPE Project</title>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+              google.charts.load('current', {'packages':['corechart']});
+              google.charts.setOnLoadCallback(drawVisualization);
+
+              function drawVisualization() {
+                // Some raw data (not necessarily accurate)
+                var data = google.visualization.arrayToDataTable([
+                  ['Month', 'Number of bags', 'Number of Trips'],
+                  ['2020/01',  165,      938],
+                  ['2020/02',  135,      112],
+                  ['2020/03',  157,      116],
+                  ['2020/04',  139,      1110],
+                  ['2020/05',  136,      691],
+                  ['2020/06',  165,      938],
+                  ['2020/07',  135,      112],
+                  ['2020/08',  157,      116],
+                  ['2020/09',  139,      1110],
+                  ['2020/10',  136,      691],
+                  ['2020/11',  139,      1110],
+                  ['2020/12',  136,      691]
+                ]);
+
+                var options = {
+                  title : 'Form 2 Data',
+                  vAxis: {title: 'Data based on vehicle number - '},
+                  hAxis: {title: 'Month'},
+                  seriesType: 'bars',
+                  series: {2: {type: 'line'}}        };
+
+                var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+              }
+            </script>
     </head>
     <body style="background:#dedede;">
           <%- include('partials/header') %>
@@ -43,6 +77,7 @@
                     </div>
                     <br><br>
                     <h5>Pictorial Representation comes here</h5>
+                    <div id="chart_div" style="width: 1500px; height: 500px;"></div>
                 </div>
             </div>
             <br>
