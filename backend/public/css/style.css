@@ -1,6 +1,12 @@
 .navbar{
+<<<<<<< HEAD
+  background:linear-gradient(57deg,#00c6a7,#1e4d92);
+}
+
+=======
     background:linear-gradient(57deg,#00c6a7,#1e4d92);
 }
+>>>>>>> c9c6263c2ee8ee2141492694e3f74679d60fc67c
 .city{
   margin-top: 20px;
   margin-left: 20px;

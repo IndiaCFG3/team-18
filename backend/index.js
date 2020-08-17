@@ -11,6 +11,11 @@ const bodyParser = require("body-parser");
 const app = express();
 //require("./startup/routes")(app);
 
+// app.use(function(req, res, next){
+// 	res.locals.currentUser = req.user;
+// 	next();
+// });
+
 app.set("view engine", "ejs");
 app.use(
   bodyParser.urlencoded({
@@ -47,6 +52,7 @@ app.use(require("express-session")({
 	resave: false,
 	saveUninitialized : false
 }));
+
 
 // User.create({
 //   name : "Sample" ,
@@ -101,6 +107,15 @@ app.post("/login", function (req, res) {
   });
 });
 
+<<<<<<< HEAD
+=======
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	next();
+});
+
+
+>>>>>>> 1451b84b20bb0bb1ca8ba919d57df6df05849293
 app.get("/logout", function(req, res){
 	req.logout();
 	res.redirect("/");
@@ -148,7 +163,12 @@ app.post("/register", function (req, res) {
 // });
 
 app.get("/dashboard", isLoggedIn, function(req, res){
+<<<<<<< HEAD
   res.render('dashboard', {user : req.user});
+=======
+  res.render('dashboard', );
+  //console.log(req.user);
+>>>>>>> 1451b84b20bb0bb1ca8ba919d57df6df05849293
 })
 
 app.get('/dashboard/form1-display', isLoggedIn, function(req, res){
@@ -156,7 +176,11 @@ app.get('/dashboard/form1-display', isLoggedIn, function(req, res){
 })
 
 app.get('/dashboard/form2-display', isLoggedIn, function(req, res){
+<<<<<<< HEAD
   res.render('form2-display', {user : req.user});
+=======
+  res.render('form2-display', {user: req.user});
+>>>>>>> 1451b84b20bb0bb1ca8ba919d57df6df05849293
 })
 
 const port = process.env.PORT || config.get("port");
@@ -170,6 +194,8 @@ const server = app.listen(port, () =>
 //   else
 //     console.log(forms);
 // })
+
+
 
 function isLoggedIn(req, res, next){
 	if(req.isAuthenticated()){

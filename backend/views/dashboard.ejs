@@ -33,6 +33,7 @@
         </div>
         </div>
         <br>
+<<<<<<< HEAD
         <% if(user.isAdmin) { %>
             <div class="card row">
                 <div class="card-body">
@@ -41,6 +42,17 @@
                 </div>
             </div>
         <% } %>
+=======
+        <% if( currentUser.isAdmin ) { %>
+            <div class="card row">
+                <div class="card-body">
+                    <h5 class="card-title">Create new form</h5>
+                    <a class="btn btn-outline-primary"href="/newform">New Form</a>
+                </div>
+            </div>
+        <% } %>
+         
+>>>>>>> 1451b84b20bb0bb1ca8ba919d57df6df05849293
     </div>
     <!--Footer-->
 <%- include('partials/footer') -%>
